@@ -1,0 +1,14 @@
+sudo: required
+
+language: generic
+
+services:
+  - docker
+before_install:
+  - echo "start creating an image with dockerfile"
+  - docker build -t dionysus11/docker-react-app -f Dockerfile
+script:
+  - docker run -e CI=true dionysus11/docker-react-app npm rn test --coverage
+after_success:
+  - echo "Test Success"
+  
